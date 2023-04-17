@@ -1,0 +1,67 @@
+@charset "UTF-8";
+@import url("reset.css");
+
+body {
+	background-color: #F2F1EF;
+	width: 100vw;
+	height: 100vh;
+}
+
+aside {
+	float: left;
+	width: 15%;
+	height: 100%;
+	margin-top: 20px;
+}
+
+content {
+	display: block;	
+	width: 80%;
+	height: 600px;
+	float: right;
+	background-color: white;
+	
+	margin: 50px 20px 0 0;
+	
+}
+
+.board_screen-title {
+	font-size: 50px;
+	text-align: center;
+} 
+
+.board_screen-category {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+.board_screen-category ul {
+	margin: 30px;
+	flex-direction: column;
+}
+
+.board_screen-category li {
+	margin-top: 20px;
+}
+
+/* boardWrite */
+.screen-board {
+	margin: auto;
+
+}
+#header-subject_category {
+	display: flex;
+	justify-content: center;
+}
+
+#header-subject_category a {
+	margin-left: 45px;
+	padding: 4px;
+	font-size: 18px;
+}
+
+
+
+

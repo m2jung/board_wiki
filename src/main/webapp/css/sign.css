@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500&family=Lobster&family=Press+Start+2P&family=Righteous&display=swap');
+
+
+body {
+	background-color: #F2F1EF;
+	width: 100vw;
+	height: 100vh;
+}
+
+footer {
+	position: fixed;
+	right:0;
+	bottom: 0;
+	margin: 10px;
+	text-align:center;
+	opacity: 50%
+}
+
+.screen_signup {
+    width: 400px;
+    height: 620px;
+    margin: auto;
+    margin-top: 30px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+    background-color: #D9D9D7;
+    border-radius: 20px;
+	box-shadow: 5px 5px #A6A6A6;
+	
+}
+
+.screen_signup-form {
+	width: 300px;
+    height: 470px;
+}
+
+.screen_signup-form h2{
+	text-align:center;
+	font-family:'Press Start 2P','Righteous', cursive;
+	padding:20px;
+}
+
+.screen_signup-form p {
+	margin: 30px 5px;
+	opacity: 70%;
+	font-family:'Press Start 2P','Righteous', cursive;
+	font-size: 10px;
+}
+.screen_signup-form span {
+    font-size: 14px;
+    font-family: none;
+    opacity: 70%;
+}
+.screen_signup-form input {
+    margin: 3px 0;
+}
+
+.screen_signup-btn input{
+	width: 120px;
+	height: 30px;
+	background-color: white;
+	border:none;
+	border-radius: 15px;
+	box-shadow: 3px 3px rgba(0,0,0,0.5);
+}
+
+/* 로그인 화면 */
+.screen_signin {
+	background-color: white;
+	width: 300px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	margin-top: 150px;
+	border-radius: 20px;
+	box-shadow: 5px 5px #A6A6A6;
+	text-align:center;
+}
+
+.screen_signin h3 {
+	font-family:'Press Start 2P','Righteous', cursive;
+	margin: 20px;
+}
+
+.screen_signin input {
+	margin-top:10px;
+}
+.screen_signup-btn {
+	margin-top: 20px;
+}
