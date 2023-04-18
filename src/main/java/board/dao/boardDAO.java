@@ -5,6 +5,7 @@ package board.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -45,24 +46,81 @@ public class boardDAO {
 	
 	
 	// 게시판 글쓰기
-	public int write(boardDTO boarddto) {
+	public int boardwrite(boardDTO boarddto) {
 		int su = 0;
 		try {
-			String sql="insert into values(board_seq.nextval,?,?,?,?)";
+			String sql="insert into board values(seq_board.nextval,?,?,?,?,0,sysdate)";
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,boarddto.getId());
-			pstmt.setString(2,boarddto.getSubject());
-			pstmt.setString(3,boarddto.getContents());
-			//??????????
+			pstmt.setString(2,boarddto.getName());
+			pstmt.setString(3,boarddto.getSubject());
+			pstmt.setString(4,boarddto.getContent());
+			su = pstmt.executeUpdate();
 	
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			streamClose(con,pstmt,res);
 		}
-		
-		
 		return su;
 	} 
 	
+	//글목록 
+	public ArrayList<boardDTO> boardList(int start, int last) {
+		ArrayList<boardDTO> list = new ArrayList();
+		boardDTO boarddto = null;
+	
+		try {
+			String sql = "select seq, id, name, subject, content, hit, to_char(logdate, 'YYYY.MM.DD') as logdate from "
+                    + "(select rownum rn, tt. * from "
+                    + "(select * from board order by seq desc) tt) "
+                    + "where rn>=? and rn<=?";
+			con = ds.getConnection();
+    		pstmt = con.prepareStatement(sql);
+    		pstmt.setInt(1, start);
+    		pstmt.setInt(2, last);
+    		res = pstmt.executeQuery();
+    		
+    		// 여러값을 가져올때는 while
+    		while(res.next()) {
+    			boarddto = new boardDTO();
+    			boarddto.setSeq(res.getInt("seq"));
+    			boarddto.setId(res.getString("id"));
+    			boarddto.setName(res.getString("name"));
+    			boarddto.setSubject(res.getString("subject"));
+    			boarddto.setContent(res.getString("content"));
+    			boarddto.setHit(res.getInt("hit"));
+    			boarddto.setLogdate(res.getDate("logdate"));
+    			list.add(boarddto);
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			streamClose(con, pstmt, res);
+		}
+		return list;
+	}
+	
+	
+	// 전체 페이지의 개수 
+	public int getTotalArticle() {
+		int totalArticle = 0;
+    	try {
+    		String sql = "select count(*) from board";
+    		con = ds.getConnection();
+    		pstmt = con.prepareStatement(sql);
+    		res = pstmt.executeQuery();
+    		
+    		if(res.next()) {
+    			totalArticle = res.getInt(1); //전체글갯수 
+    		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			streamClose(con,pstmt,res);			
+		}	
+    	return totalArticle; 
+	}
 	
 }

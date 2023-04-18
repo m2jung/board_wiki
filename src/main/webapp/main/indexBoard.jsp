@@ -27,22 +27,32 @@
 			<c:if test="${sessionScope.memberId!=null }">
 			<div class="board_screen-category">	
 				<ul>
-					<li><a href="../baord/boardWriteForm">글쓰기</a></li>
-					<li><a href="../baord/boardWriteList">글목록</a></li>
+					<li><a href="/00_wiki_board/main/indexBoard.jsp?req=boardWriteForm">글쓰기</a></li>
+					<li><a href="../board/boardList.jsp?pg=1">글목록</a></li>
 				</ul>
 			</div>
 			</c:if>
 		</aside>
 		<!-- content -->
 		<content>
+			<!--  게시글 작성 페이지  -->
 			<c:if test="${param.req =='boardWriteForm'}">
 				<jsp:include page="../board/boardWriteForm.jsp"/>
+			</c:if>
+			<!--  게시글 작성완료 페이지  -->
+			<c:if test="${param.req =='boardWriteResult'}">
+				<jsp:include page="../board/boardWriteResult.jsp"/>
+			</c:if>
+			<!--  게시글 목록 페이지  -->
+			<c:if test="${param.req =='boardListResult'}">
+				<jsp:include page="../board/boardListResult.jsp"/>
 			</c:if>
 		</content>
 	</main>
 	
 	<!-- footer -->
 	<footer>
+			<h5>Copyright&copy; 2023. 미정 all rights reserved</h5>
 	</footer>
 	
 </body>

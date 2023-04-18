@@ -1,10 +1,20 @@
 @charset "UTF-8";
 @import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400&display=swap');
+
 
 body {
-	background-color: #F2F1EF;
 	width: 100vw;
 	height: 100vh;
+	background-color: #F2F1EF;
+	font-family: 'Gaegu', cursive;
+}
+h1 {
+	text-align: center;	
+}
+
+table {
+	margin: auto;
 }
 
 aside {
@@ -12,7 +22,9 @@ aside {
 	width: 15%;
 	height: 100%;
 	margin-top: 20px;
+
 }
+
 
 content {
 	display: block;	
@@ -23,6 +35,14 @@ content {
 	
 	margin: 50px 20px 0 0;
 	
+}
+footer {
+	position: fixed;
+	right:0;
+	bottom: 0;
+	margin: 10px;
+	text-align:center;
+	opacity: 50%
 }
 
 .board_screen-title {
@@ -44,13 +64,11 @@ content {
 
 .board_screen-category li {
 	margin-top: 20px;
+	font-size: 25px;
 }
 
 /* boardWrite */
-.screen-board {
-	margin: auto;
 
-}
 #header-subject_category {
 	display: flex;
 	justify-content: center;
@@ -59,9 +77,8 @@ content {
 #header-subject_category a {
 	margin-left: 45px;
 	padding: 4px;
-	font-size: 18px;
+	font-size: 23px;
 }
-
 
 
 

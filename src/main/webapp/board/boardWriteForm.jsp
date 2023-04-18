@@ -9,9 +9,9 @@
 </head>
 <body>
 	<div class="screen-board">
-		<h1>글쓰기</h1>
 		<div class="screen-board_form">
-			<form action="boardWrite.jsp" method="post" name="boardWriteForm">
+		<h1>---------------- 글쓰기 ----------------</h1>
+			<form action="../board/boardWrite.jsp" method="post" name="boardWriteForm">
 			<table>
 				<tr>
 					<td><select name="subject">
@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td>
-						<textarea rows="30" cols="70" name="contents" required></textarea> 
+						<textarea rows="30" cols="70" name="content" placeholder="내용을 입력하세요" required></textarea> 
 					</td>
 				</tr>
 					<td colspan="2" align="end">

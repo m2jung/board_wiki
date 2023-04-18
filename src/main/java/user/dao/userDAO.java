@@ -98,9 +98,9 @@ public class userDAO {
 			// 한 행씩 sql 결과 데이터 String 타입으로 가져와 dto 객체에 저장 
 			if(res.next()) {
 				userdto = new userDTO();
-				userdto.setId(res.getString("name"));
-				userdto.setPwd(res.getString("id"));
-				userdto.setName(res.getString("pwd"));
+				userdto.setName(res.getString("name"));
+				userdto.setId(res.getString("id"));
+				userdto.setPwd(res.getString("pwd"));
 				userdto.setEmail(res.getString("email"));
 				userdto.setTel(res.getString("tel"));				
 			}
