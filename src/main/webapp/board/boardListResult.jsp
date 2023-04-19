@@ -12,12 +12,17 @@
 h1 {
 	text-align: center;
 }
+th {
+	background-color: rgba(0,0,0,0.1);
+}
 table {
 	margin: auto;
+	height: 20px;
 }
 table, th, td {
 	border: 1px solid black;
 	border-collapse: collapse;
+	font-size: 20px;
 }
 td {
 	text-align: center;
@@ -67,7 +72,7 @@ button {
 		<tr>
 			<td>${boarddto.seq}</td>
 			<td> 
-				<a href="#" onclick="isLogin(${boarddto.seq }, ${boarddto.pg })"> ${boarddto.subject}</a>
+				<a href="#" onclick="isLogin(${boarddto.seq }, ${pg })"> [${boarddto.subject}] ${boarddto.title}</a>
 			</td>
 			<td>${boarddto.name}</td>
 			<td>${boarddto.logdate}</td>
@@ -100,7 +105,7 @@ button {
 <script type="text/javascript">
 	function isLogin(seq,pg) {
 		<% if(session.getAttribute("memberId")==null){%>
-			alert("로그인 하세요..");
+			alert("로그인을 해야합니다!!");
 		<%} else { %>
 			location.href="boardView.jsp?seq="+seq+"&pg="+pg;
 		<%} %>

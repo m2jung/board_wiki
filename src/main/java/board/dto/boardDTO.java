@@ -9,21 +9,23 @@ public class boardDTO {
 	private String id;
 	private String name;
 	private String subject;
+	private String title;
 	private String content;
 	private int hit;
-	private Date logdate;
+	private String logdate;
 
 	
 	public boardDTO() {
 		super();
 	}
 	
-	public boardDTO(int seq, String id, String name, String subject, String content, int hit, Date logdate) {
+	public boardDTO(int seq, String id, String name, String subject, String title, String content, int hit, String logdate) {
 		super();
 		this.seq = seq;
 		this.id = id;
 		this.name = name;
 		this.subject = subject;
+		this.title = title;
 		this.content = content;
 		this.hit = hit;
 		this.logdate = logdate;
@@ -53,6 +55,15 @@ public class boardDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getContent() {
 		return content;
 	}
@@ -65,10 +76,10 @@ public class boardDTO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-	public Date getLogdate() {
+	public String getLogdate() {
 		return logdate;
 	}
-	public void setLogdate(Date logdate) {
+	public void setLogdate(String logdate) {
 		this.logdate = logdate;
 	}
 

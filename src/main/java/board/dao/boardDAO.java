@@ -49,13 +49,14 @@ public class boardDAO {
 	public int boardwrite(boardDTO boarddto) {
 		int su = 0;
 		try {
-			String sql="insert into board values(seq_board.nextval,?,?,?,?,0,sysdate)";
+			String sql="insert into board values(seq_board.nextval,?,?,?,?,?,0,sysdate)";
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,boarddto.getId());
 			pstmt.setString(2,boarddto.getName());
 			pstmt.setString(3,boarddto.getSubject());
-			pstmt.setString(4,boarddto.getContent());
+			pstmt.setString(4,boarddto.getTitle());
+			pstmt.setString(5,boarddto.getContent());
 			su = pstmt.executeUpdate();
 	
 		} catch (Exception e) {
@@ -72,7 +73,7 @@ public class boardDAO {
 		boardDTO boarddto = null;
 	
 		try {
-			String sql = "select seq, id, name, subject, content, hit, to_char(logdate, 'YYYY.MM.DD') as logdate from "
+			String sql = "select seq, id, name, subject, title, content, hit, to_char(logdate, 'YYYY.MM.DD') as logdate from "
                     + "(select rownum rn, tt. * from "
                     + "(select * from board order by seq desc) tt) "
                     + "where rn>=? and rn<=?";
@@ -89,9 +90,10 @@ public class boardDAO {
     			boarddto.setId(res.getString("id"));
     			boarddto.setName(res.getString("name"));
     			boarddto.setSubject(res.getString("subject"));
+    			boarddto.setTitle(res.getString("title"));
     			boarddto.setContent(res.getString("content"));
     			boarddto.setHit(res.getInt("hit"));
-    			boarddto.setLogdate(res.getDate("logdate"));
+    			boarddto.setLogdate(res.getString("logdate"));
     			list.add(boarddto);
     		}
 		} catch (Exception e) {
@@ -123,4 +125,72 @@ public class boardDAO {
     	return totalArticle; 
 	}
 	
+	// 클릭한 게시글 보여주기
+	public boardDTO boardView(int seq) {
+		boardDTO boarddto = null;
+		
+		try {
+			String sql ="select * from board where seq=?";
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			res = pstmt.executeQuery();
+			
+			if(res.next()) {
+				boarddto = new boardDTO();
+				boarddto.setSeq(res.getInt("seq"));
+				boarddto.setId(res.getString("id"));
+				boarddto.setName(res.getString("name"));
+				boarddto.setSubject(res.getString("subject"));
+				boarddto.setTitle(res.getString("title"));
+				boarddto.setContent(res.getString("Content"));
+				boarddto.setHit(res.getInt("hit"));
+				boarddto.setLogdate(res.getString("logdate"));
+	
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			streamClose(con, pstmt, res);
+		}
+		return boarddto;
+	}
+	
+	// 조회수 증가 
+	public void updateHit(int seq) {
+		try {
+			String sql = "update board set hit=hit+1 where seq=?";
+ 			con = ds.getConnection();
+ 			pstmt = con.prepareStatement(sql);
+ 			pstmt.setInt(1, seq);
+ 			pstmt.executeUpdate();
+ 			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			streamClose(con,pstmt,res);
+		}
+	}
+	
+	// 게시글 수정
+	public int boardModify(String subject, String title, String content, int seq) {
+		int su = 0;
+		try {
+			String sql="update board set subject=?,title=?,content=?,logdate=sysdate where seq=?";
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, title);
+			pstmt.setString(3, content);
+			pstmt.setInt(4, seq);	
+			su = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			streamClose(con, pstmt, res);
+		}
+		
+		
+		return su;
+	}
 }

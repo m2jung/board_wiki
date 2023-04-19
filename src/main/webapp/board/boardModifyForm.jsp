@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<div class="screen-board">
 		<div class="screen-board_form">
 		<h1>---------------- 글쓰기 ----------------</h1>
-			<form action="../board/boardWrite.jsp" method="post" name="boardWriteForm">
+			<form action="../board/boardModify.jsp" method="post" name="boardModifyForm">
 			<table>
 				<tr>
 					<td><select name="subject">
@@ -21,12 +22,12 @@
 							<option value="jsp"> JSP </option>
 							<option value="sql"> SQL </option>
 						</select>
-						<input type="text" name="title" size="71"  placeholder="제목을 입력하세요" required />
+						<input type="text" name="title" size="71"  placeholder="${boarddto.title}" required />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<textarea rows="30" cols="70" name="content" placeholder="내용을 입력하세요" required></textarea> 
+						<textarea rows="30" cols="70" name="content" placeholder="${boarddto.content}" required></textarea> 
 					</td>
 				</tr>
 					<td colspan="2" align="end">

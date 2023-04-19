@@ -47,6 +47,18 @@
 			<c:if test="${param.req =='boardListResult'}">
 				<jsp:include page="../board/boardListResult.jsp"/>
 			</c:if>
+			<!--  게시글 확인 페이지  -->
+			<c:if test="${param.req =='boardViewResult'}">
+				<jsp:include page="../board/boardViewResult.jsp"/>
+			</c:if>
+			<!--  게시글 수정 페이지  -->
+			<c:if test="${param.req =='boardModifyForm'}">
+				<jsp:include page="../board/boardModifyForm.jsp"/>
+			</c:if>
+			<!--  게시글 수정완료 페이지  -->
+			<c:if test="${param.req =='boardModifyResult'}">
+				<jsp:include page="../board/boardModifyResult.jsp"/>
+			</c:if>
 		</content>
 	</main>
 	

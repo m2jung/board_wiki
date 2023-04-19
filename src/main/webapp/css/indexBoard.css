@@ -9,6 +9,12 @@ body {
 	background-color: #F2F1EF;
 	font-family: 'Gaegu', cursive;
 }
+
+button {
+	width: 100px;
+	height: 30px;
+	margin: 30px;
+}
 h1 {
 	text-align: center;	
 }

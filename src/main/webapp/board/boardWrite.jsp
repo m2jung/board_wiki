@@ -9,6 +9,7 @@ request.setCharacterEncoding("utf-8");
 String id = (String)session.getAttribute("memberId");
 String name = (String)session.getAttribute("memberName");
 String subject = request.getParameter("subject");
+String title = request.getParameter("title");
 String content = request.getParameter("content");
 
 //dto에 데이터 저장 
@@ -16,6 +17,7 @@ boardDTO boarddto = new boardDTO();
 boarddto.setId(id);
 boarddto.setName(name);
 boarddto.setSubject(subject);
+boarddto.setTitle(title);
 boarddto.setContent(content);
 
 //dto를 통해 db에 저장 
